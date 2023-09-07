@@ -5,9 +5,13 @@ import Navbar from '@/components/Navbar'
 import { Button } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios'
+import { CldImage, CldUploadButton } from 'next-cloudinary';
+import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation'
 
 const page = () => {
-
+  const { data: session }= useSession();
+  const router = useRouter();
 
   const [name,setName] = useState("");
   const [city,setCity] = useState("");
@@ -16,6 +20,7 @@ const page = () => {
   const [gender,setGender] = useState("");
   const [size,setSize] = useState("");
   const [age,setAge] = useState("");
+  const [imageId,setImageId]= useState("");
 
   const [submitting,setSubmitting] =useState(false)
 
@@ -37,9 +42,6 @@ const page = () => {
     e.preventDefault();
     setSubmitting(true);
 
-    e.preventDefault();
-    setSubmitting(true);
-
     try{
 
       const postData= JSON.stringify({
@@ -49,13 +51,16 @@ const page = () => {
         breed,
         age,
         gender,
-        size
+        size,
+        userId: session?.user.id || "none",
+        imageId
       })
+
       const response = await axios.post('/api/pet/new', postData)
 
       console.log(response);
 
-      if(response.ok) {
+      if(response.status === 201) {
         router.push('/');
       }
 
@@ -82,8 +87,38 @@ const page = () => {
       </div>
 
       <div className="bg-aliceblue-100 px-5 py-4 pt-8 flex flex-col items-center justify-center gap-[15px] rounded-xl">
+        
+        
 
-        <div className="flex flex-row justify-center items-center text-darkslategray px-6 bg-white py-2 rounded-lg text-[13px] w-[80%]">
+        { 
+          imageId ?
+            (<CldImage
+              width={250}
+              height={280}
+              crop="fill"
+              src={imageId}
+              alt="image"
+              className="rounded-lg flex flex-col box-border items-center justify-end"
+            />) :
+
+            (
+              <CldUploadButton
+                onUpload={( result )=> {
+                  setImageId(result.info.public_id)
+                }}
+                uploadPreset="artPage"
+                className='w-[80%] text-gray-500 px-6 bg-white py-2 rounded-lg font-times'
+              >
+                Upload an Image
+              </CldUploadButton>
+            )
+          
+        }
+
+
+        <div className="flex flex-row justify-center items-center px-6 bg-white py-2 rounded-lg text-[13px] w-[80%] " >
+          
+          
           <input
             className="flex flex-row gap-3 justify-center items-center min-w-[100px] w-10 text-[13px] text-gray-500 focus:outline-none focus:border-transparent placeholder-gray-500 font-times"
             value={name}

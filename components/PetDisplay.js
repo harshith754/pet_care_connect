@@ -1,9 +1,14 @@
+"use client"
 import { Button } from "antd";
 import DogCard from "@/components/DogCard";
 
+
+
 const PetDisplay = ({
   sectionTitle,
+  pets
 }) => {
+
 
   return (
     <div className="bg-aliceblue-100 flex flex-col items-center justify-center py-[60px]">
@@ -19,15 +24,16 @@ const PetDisplay = ({
       <div className="flex flex-row flex-wrap justify-center gap-5  px-5">
         
         
-          <DogCard 
-            
-          />
-          <DogCard />
-          <DogCard />
-          <DogCard />
-          <DogCard />
-          <DogCard />
-          <DogCard />
+        {
+          pets.map((pet)=>
+            (
+              <DogCard 
+                pet={pet}
+                key={pet._id}
+              />
+            )
+          )
+        }
           
       
       </div>
