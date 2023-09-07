@@ -18,7 +18,7 @@ const CreateAdoptionSection = () => {
 
           Create pet adoption Listing
         </p>
-        <div className="w-[483px] flex flex-col items-center justify-center z-[0]">
+        <div className="flex flex-col items-center justify-center z-[0]">
           
           <Button
             className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-8 py-8 mb-5"

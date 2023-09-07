@@ -25,7 +25,7 @@ const Navbar = ( ) => {
   return (
     <div className={`w-full bg-deepskyblue pt-4 pb-3 `}>
       <div className=" flex flex-row items-center justify-between w-full text-6xl text-white font-jaldi ">
-          <div className="ml-10 flex flex-row justify-start items-start">
+          <div className="ml-10 sm:ml-0 flex flex-row justify-start items-start">
             <img
               className="h-[40px] object-cover mx-10"
               alt=""
@@ -33,7 +33,7 @@ const Navbar = ( ) => {
             />
           </div>
           
-          <div className="flex flex-row items-center gap-[30px] px-[30px] mr-10 text-[18px]">
+          <div className="flex flex-row items-center gap-[30px] px-[30px] mr-10 sm:mr-0 text-[18px]">
 
               {/* Desktop Navigation */}
             

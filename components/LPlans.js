@@ -1,6 +1,6 @@
 const PlansSection = () => {
   return (
-    <div className=" w-full flex flex-col py-[60px] items-center justify-center bg-[url('/plans@3x.png')] bg-cover bg-[center]">
+    <div className=" w-full flex flex-col py-[60px] items-center justify-center bg-[url('/plans@3x.png')] bg-cover bg-[center] sm:hidden">
       
       <div className=" w-full  leading-[48px] font-medium text-center text-[45px] text-darkslategray font-radio-canada">
         Planning to adopt a pet?
