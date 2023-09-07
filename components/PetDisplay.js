@@ -6,7 +6,7 @@ import DogCard from "@/components/DogCard";
 
 const PetDisplay = ({
   sectionTitle,
-  pets
+  pets=[]
 }) => {
 
 
