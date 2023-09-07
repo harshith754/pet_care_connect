@@ -39,7 +39,7 @@ const PetDisplay = ({
       </div>
       
       <Button
-        className=" mt-10 flex justify-center cursor-pointer items-center text-[18px] text-white font-jua"
+        className=" mt-10 flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-xl"
         style={{ width: "220px",height:"50px", backgroundColor:"#00ACE5"}}
         type="primary"
         size="middle"
