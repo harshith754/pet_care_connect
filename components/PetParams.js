@@ -4,16 +4,19 @@ import DropdownMenu from "@/components/DropdownMenu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const PetParams = () => {
+const PetParams = ( {searchParams} ) => {
+
+  
+
 
   const router = useRouter()
 
-  const [city,setCity] = useState("");
-  const [petType,setPetType] = useState("");
-  const [breed,setBreed] = useState("");
-  const [gender,setGender] = useState("");
-  const [size,setSize] = useState("");
-  const [age,setAge] = useState("");
+  const [city,setCity] = useState(searchParams.city || "");
+  const [petType,setPetType] = useState(searchParams.petType || "");
+  const [breed,setBreed] = useState(searchParams.breed || "");
+  const [gender,setGender] = useState(searchParams.gender || "");
+  const [size,setSize] = useState(searchParams.size || "");
+  const [age,setAge] = useState(searchParams.age || "");
 
   const handleSelect = (value, identifier) => {
     if (identifier === "city") {

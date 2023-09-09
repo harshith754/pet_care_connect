@@ -1,14 +1,41 @@
 "use client"
 
 import { Button } from "antd";
-import Link from "next/link";
+
+import NavbarH from "@/components/NavbarH";
+import { useState } from "react";
+import DropdownMenu from "./DropdownMenu";
 
 import { useRouter } from "next/navigation";
-import NavbarH from "@/components/NavbarH";
 
 const HeroSection = () => {
   
-  const router = useRouter();
+
+  const router= useRouter()
+  const [city,setCity] = useState("");
+  const [petType,setPetType] = useState("");
+
+  const handleSelect = (value, identifier) => {
+    if (identifier === "city") {
+      setCity(value);
+    } else if (identifier === "petType") {
+      setPetType(value);
+    } 
+  }
+  const handleSubmit = ()=>{
+    const queryParams ={
+      city,
+      petType,
+    }
+    const queryString = Object.entries(queryParams)
+      .filter(([key, value]) => value !== '')
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .join('&');
+
+
+    router.push(`/find-pets?${queryString}`)
+  }
+  
 
   return ( 
     <header className="w-full flex flex-col py-[22px] items-center justify-center bg-[url('/header1@3x.png')] bg-cover bg-[top]">
@@ -33,15 +60,29 @@ const HeroSection = () => {
       
           <div className="w-[70%] flex flex-row sm:flex-col rounded-lg bg-white py-1.5 px-0 pr-1.5 items-center justify-between sm:justify-center sm:py-3 sm:gap-2">
             <div className="w-full flex flex-wrap items-center justify-between sm:justify-center gap-2 text-sm px-5 sm:px-3">
-              <input className="bg-slate-100 py-3 px-5 rounded-lg w-[40%] min-w-[180px] focus:outline-none focus:border-transparent"
-                placeholder="Enter city"
-              >
-                
-              </input>
-              <input className="bg-slate-100 py-3 px-5 rounded-lg w-[40%] min-w-[180px] focus:outline-none focus:border-transparent"
-                placeholder="Enter pet type"
-              >
-              </input>
+              <DropdownMenu
+                value={city}
+                options={[
+                  { value: "Mumbai City" },
+                  { value: "Mumbai Suburban" },
+                  { value: "Pune" },
+                  { value: "Others" },
+                ]}
+                placeholder={"Enter your city"}
+                handleClick={(value) => handleSelect(value, "city")} 
+              />
+
+              <DropdownMenu               
+                value={petType}
+                options={[
+                  { value: "Dog" },
+                  { value: "Cat" },
+                  { value: "Bird" },
+                  { value: "Others" },
+                ]}
+                placeholder={"Select pet type"}
+                handleClick={(value) => handleSelect(value, "petType")} 
+              />
               
             </div>
             <Button
@@ -50,6 +91,7 @@ const HeroSection = () => {
               type="primary"
               size="middle"
               shape="default"
+              onClick={handleSubmit}
               
             >
               Search
