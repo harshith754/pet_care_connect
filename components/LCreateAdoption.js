@@ -1,12 +1,13 @@
+"use client"
+
 import { Button } from "antd";
+import {useRouter} from "next/navigation";
 
 const CreateAdoptionSection = () => {
+
+  const router = useRouter();
   return (
     <div className="w-full bg-aliceblue-100 flex flex-col py-10 items-center justify-center text-center text-[50px] text-darkslategray font-radio-canada">
-      
-      
-      
-
       <div className=" relative leading-[48px] font-medium text-center text-[45px] text-darkslategray font-radio-canada mt-5">
       Want to place pet up for adoption?
       </div>
@@ -26,9 +27,9 @@ const CreateAdoptionSection = () => {
             type="primary"
             size="middle"
             shape="default"
-          
+            onClick={()=>{ router.push('/create-adoption')}}
           >
-                Create Now!!
+            Create Now!!
           </Button>
         </div>
     </div>
