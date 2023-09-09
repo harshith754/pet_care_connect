@@ -47,14 +47,14 @@ const Navbar = ( ) => {
                 SEARCH PETS
               </Link>
 
-              
+              <Link href="/create-adoption"
+                  className='relative tracking-wide md:hidden text-white no-underline'>
+                  CREATE ADOPTION LISTING
+              </Link>
 
               {session?.user ?(
                 <>
-                <Link href="/create-adoption"
-                  className='relative tracking-wide md:hidden text-white no-underline'>
-                  CREATE ADOPTION LISTING
-                </Link>
+                
                 <a type="button"
                   className='relative tracking-wide md:hidden text-white no-underline hover:cursor-pointer'
                   onClick={signOut}
@@ -158,6 +158,11 @@ const Navbar = ( ) => {
                         <Link href="/find-pets"
                           className=' tracking-wide no-underline'>
                           SEARCH PETS
+                        </Link>
+
+                        <Link href="/create-adoption"
+                          className=' tracking-wide no-underline'>
+                          CREATE ADOPTION LISTING
                         </Link>
 
                         {providers && 
