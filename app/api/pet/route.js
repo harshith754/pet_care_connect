@@ -11,7 +11,7 @@ export const GET = async (req) => {
     return new Response(JSON.stringify(pets), { status: 200} )
   } catch (error) {
 
-    return new Response("Failed to fetch pets", { status: 500} )
+    return new Response(error, { status: 500} )
   
   }
 }
