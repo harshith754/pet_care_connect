@@ -1,15 +1,38 @@
+"use client"
+
 import Navbar from "@/components/Navbar";
 import PetDisplay from "@/components/PetDisplay";
 import PetParams from "@/components/PetParams";
-const CreatePet = () => {
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const FindPet = ( { searchParams } ) => {
+
+  const [pets,setPets] = useState([])
+  const fetchPets = async () =>{
+
+    const response = await axios.get('/api/pet', {
+    })  
+
+    setPets(response.data)
+
+  }
+
+  useEffect( () => {
+    
+    fetchPets()
+  },[])
+
+  
   return (
      
     <div>
       <Navbar />   
       <PetParams />
 
-      <PetDisplay 
-        sectionTitle={"Pets For You ❤️"}
+      <PetDisplay
+        sectionTitle="Pets Near You"
+        pets={pets}
       />
 
     </div>
@@ -17,4 +40,4 @@ const CreatePet = () => {
   )
 }
 
-export default CreatePet
+export default FindPet
