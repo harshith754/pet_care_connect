@@ -45,7 +45,7 @@ const HeroSection = () => {
               
             </div>
             <Button
-              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-xl "
+              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg "
               style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
               type="primary"
               size="middle"
