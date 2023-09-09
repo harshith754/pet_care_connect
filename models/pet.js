@@ -33,6 +33,10 @@ const PetSchema = new Schema({
   imageId:{
     type:String,
     required: [true, 'ImageUrl is required!'],
+  },
+  petType:{
+    type:String,
+    required: [true, 'PetType is required!'],
   }
 
 })

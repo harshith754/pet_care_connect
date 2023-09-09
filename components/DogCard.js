@@ -3,7 +3,6 @@ import { CldImage } from 'next-cloudinary';
 const DogCard = ({pet}) => {
 
   const imageUrl="https://res.cloudinary.com/dqqgraqee/image/upload/c_fill,w_250,h_280,g_auto/f_auto/q_auto/mslypfda0jzmvhzqti7s?_a=BAVAfUGd0/v1234"
-  console.log(imageUrl)
   
   return (
     <div

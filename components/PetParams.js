@@ -2,8 +2,11 @@
 import { Button } from "antd";
 import DropdownMenu from "@/components/DropdownMenu";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const PetParams = () => {
+
+  const router = useRouter()
 
   const [city,setCity] = useState("");
   const [petType,setPetType] = useState("");
@@ -25,6 +28,35 @@ const PetParams = () => {
       setAge(value)
     }
   };
+
+  const handleSubmit =() => {
+    const queryParams ={
+      city,
+      petType,
+      breed,
+      gender,
+      size,
+      age
+    }
+    const queryString = Object.entries(queryParams)
+      .filter(([key, value]) => value !== '')
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .join('&');
+
+
+    router.push(`/find-pets?${queryString}`,{ scroll: false })
+  }
+
+  const resetAll = ()=>{
+    setCity("")
+    setPetType("")
+    setBreed("")
+    setGender("")
+    setSize("")
+    setAge("")
+
+    router.push("/find-pets")
+  }
 
 
 
@@ -112,16 +144,30 @@ const PetParams = () => {
             handleClick={(value) => handleSelect(value, "age")}           
           />
         
-          <div className=" flex flex-row items-center justify-center">
+          <div className=" flex flex-row items-center justify-center gap-5">
             <Button
               className="cursor-pointer text-[18px]"
               style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
               type="primary"
               size="middle"
               shape="default"
+
+              onClick={handleSubmit}
               
             >
               Search
+            </Button>
+            <Button
+              className="cursor-pointer text-[18px]"
+              style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
+              type="primary"
+              size="middle"
+              shape="default"
+
+              onClick={resetAll}
+              
+            >
+              Reset all
             </Button>
           </div>
     

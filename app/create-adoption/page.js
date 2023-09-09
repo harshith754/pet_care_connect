@@ -3,7 +3,7 @@
 import DropdownMenu from '@/components/DropdownMenu'
 import Navbar from '@/components/Navbar'
 import { Button } from 'antd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { CldImage, CldUploadButton } from 'next-cloudinary';
 
@@ -15,6 +15,14 @@ const page = () => {
 
   const router = useRouter();
 
+  useEffect(()=>{
+    if(session === null ){
+    
+      alert('You Must Login First!!')
+      router.push('/api/auth/signin')
+      
+    }
+  },[])
   const [name,setName] = useState("");
   const [city,setCity] = useState("");
   const [petType,setPetType] = useState("");
@@ -74,12 +82,7 @@ const page = () => {
 
   }
 
-  if(session=== null ){
-    
-    alert('You Must Login First!!')
-    router.push('/api/auth/signin')
-    
-  }
+  
   return (
   <>
     <Navbar />
