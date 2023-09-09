@@ -3,14 +3,16 @@
 import DropdownMenu from '@/components/DropdownMenu'
 import Navbar from '@/components/Navbar'
 import { Button } from 'antd'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { CldImage, CldUploadButton } from 'next-cloudinary';
-import { useSession } from "next-auth/react";
+
+import { useSession} from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 const page = () => {
   const { data: session }= useSession();
+
   const router = useRouter();
 
   const [name,setName] = useState("");
@@ -70,6 +72,13 @@ const page = () => {
       setSubmitting(false);
     }
 
+  }
+
+  if(session=== null ){
+    
+    alert('You Must Login First!!')
+    router.push('/api/auth/signin')
+    
   }
   return (
   <>
