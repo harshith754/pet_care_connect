@@ -1,6 +1,8 @@
 import { connectToDB } from "@/utils/database";
 import Pet from "@/models/pet";
 
+//route "/api/pet"
+
 export const GET = async (req) => {
 
   try {
