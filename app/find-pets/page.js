@@ -14,11 +14,8 @@ const FindPet = ({ searchParams }) => {
 
   const fetchPets = async () => {
     try {
-      const response = await axios.get('/api/pet', {
-        params: {
-          petType, // Include petType as a query parameter
-        },
-      });
+      const response = await axios.get('/api/pet');
+      console.log(response.data)
       setAllPets(response.data);
     } catch (error) {
       console.error('Error fetching pets:', error);
@@ -28,6 +25,8 @@ const FindPet = ({ searchParams }) => {
   useEffect(() => {
     fetchPets();
   }, [petType]); // Fetch pets based on petType
+
+  
 
   useEffect(() => {
     // Filter pets based on props when any of these props change
@@ -45,13 +44,15 @@ const FindPet = ({ searchParams }) => {
       );
     });
     setFilteredPets(filtered);
-  }, [age, breed, city, gender, petType, size]);
+  }, [age, breed, city, gender, petType, size,allPets]);
 
   return (
     <div>
       <Navbar />
       <PetParams searchParams={searchParams} />
+      
       <PetDisplay sectionTitle="Pets Near You" pets={filteredPets} />
+
     </div>
   );
 };
