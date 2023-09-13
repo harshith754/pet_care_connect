@@ -1,13 +1,24 @@
 import { CldImage } from 'next-cloudinary';
-
+import { useInView } from 'react-intersection-observer';
+import {useRouter} from 'next/navigation'
 const DogCard = ({pet}) => {
 
-  const imageUrl="https://res.cloudinary.com/dqqgraqee/image/upload/c_fill,w_250,h_280,g_auto/f_auto/q_auto/mslypfda0jzmvhzqti7s?_a=BAVAfUGd0/v1234"
+  const router=useRouter()
+  
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Only trigger once when entering view
+    threshold: 0.95,   // How much of the element needs to be visible
+  });
+
+  const redirect =()=>{
+    router.push(`/pet-page/${pet._id}`) 
+  }
   
   return (
     <div
-      className={`rounded-xl w-[250px] h-[280px] flex flex-col items-end justify-end relative`}
-      
+      className={`rounded-xl w-[250px] h-[280px] flex flex-col items-end justify-end relative transition-transform duration-300 transform scale-100 hover:scale-105 sm:hover:scale-110 ${inView ? 'sm:scale-110':''} sm:my-2`}
+      ref={ref}
+      onClick={redirect}
     >
 
       <CldImage

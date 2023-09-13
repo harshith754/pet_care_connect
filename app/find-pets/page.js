@@ -5,6 +5,7 @@ import PetDisplay from "@/components/PetDisplay";
 import PetParams from "@/components/PetParams";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 const FindPet = ({ searchParams }) => {
 
   const { age, breed, city, gender, petType, size } = searchParams;
@@ -44,7 +45,7 @@ const FindPet = ({ searchParams }) => {
       );
     });
     setFilteredPets(filtered);
-  }, [age, breed, city, gender, petType, size, allPets]);
+  }, [age, breed, city, gender, petType, size]);
 
   return (
     <div>
