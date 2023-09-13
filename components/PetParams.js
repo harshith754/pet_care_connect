@@ -65,10 +65,10 @@ const PetParams = ( {searchParams} ) => {
 
   return (
     <header className="w-full flex flex-col py-[40px] items-center justify-center bg-[url('/header@3x.png')] bg-cover bg-[top]">
-      <div className=" rounded-81xl bg-aliceblue-100 flex flex-col py-[52px] px-[70px] items-center justify-center gap-5 max-w-[600px] sm:w-[200px]">
+      <div className=" rounded-81xl bg-aliceblue-100 flex flex-col py-[52px] px-[70px] items-center justify-center gap-5 max-w-[600px] sm:w-[80%] sm:px-0">
         
         <div className=" flex flex-col items-center justify-start gap-[10px] ">
-          <div className=" relative font-semibold text-center leading-[60px] text-[40px] sm:text-[35px] sm:leading-[45px] text-darkslategray ">
+          <div className=" relative font-semibold text-center leading-[60px] text-[40px] sm:text-[30px] sm:leading-[45px] text-darkslategray ">
             Find your new soulmate
           </div>
           <div className=" relative text-[25px] leading-[55px] sm:hidden font-puritan text-darkslategray text-center">
@@ -88,7 +88,7 @@ const PetParams = ( {searchParams} ) => {
               ]}
               placeholder={"Enter your city"}
               handleClick={(value) => handleSelect(value, "city")}
-              styles="sm:w-full" 
+              styles={"sm:w-[65%]"} 
             />
 
             <DropdownMenu               
@@ -101,12 +101,12 @@ const PetParams = ( {searchParams} ) => {
               ]}
               placeholder={"Select pet type"}
               handleClick={(value) => handleSelect(value, "petType")} 
-              styles="sm:w-full" 
+              styles={"sm:w-[65%]"} 
             />
           
 
           
-          <div className="flex flex-row justify-center items-center text-darkslategray px-6 bg-white py-2 rounded-lg text-[13px] sm:w-full">
+          <div className="flex flex-row justify-center items-center text-darkslategray px-6 bg-white py-2 rounded-lg text-[13px] sm:w-[65%]">
             <input
               className="flex flex-row gap-3 justify-center items-center min-w-[100px] w-8 text-[13px] text-gray-500 focus:outline-none focus:border-transparent placeholder-gray-500 font-times"
               value={breed}
@@ -124,7 +124,7 @@ const PetParams = ( {searchParams} ) => {
               ]}
               placeholder={"Select pet gender"}
               handleClick={(value) => handleSelect(value, "gender")}           
-              styles="sm:w-full" 
+              styles={"sm:w-[65%]"} 
           />
 
           <DropdownMenu               
@@ -137,7 +137,7 @@ const PetParams = ( {searchParams} ) => {
             ]}
             placeholder={"Select pet size"}
             handleClick={(value) => handleSelect(value, "size")}           
-            styles="sm:w-full" 
+            styles={"sm:w-[65%]"} 
           />
 
           <DropdownMenu               
@@ -149,24 +149,23 @@ const PetParams = ( {searchParams} ) => {
             ]}
             placeholder={"Select pet age"}
             handleClick={(value) => handleSelect(value, "age")}           
-            styles="sm:w-full" 
+            styles={"sm:w-[65%]"} 
           />
         
-          <div className=" flex flex-row sm:flex-col items-center justify-center gap-5">
+          <div className=" flex flex-row sm:flex-col items-center justify-center gap-5 sm:gap-3 sm:mt-5">
             <Button
-              className="cursor-pointer text-[18px]"
+              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg "
               style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
               type="primary"
               size="middle"
               shape="default"
-
               onClick={handleSubmit}
               
             >
               Search
             </Button>
             <Button
-              className="cursor-pointer text-[18px]"
+              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg "
               style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
               type="primary"
               size="middle"

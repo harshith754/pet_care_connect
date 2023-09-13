@@ -79,7 +79,7 @@ const Navbar = ( ) => {
                   Object.values(providers).map( (provider) => (
                     <a
                       type='button'
-                      className="hover:cursor-pointer md:hidden"
+                      className=" md:hidden"
                       key={provider.name}
                       onClick={ () => signIn(provider.id) }                    >
                       SIGN IN
@@ -170,7 +170,7 @@ const Navbar = ( ) => {
                               type='button'
                               key={provider.name}
                               onClick={ () => signIn(provider.id) }
-                              className="hover:cursor-pointer"
+                              className="hover:cursor-pointer tracking-wide"
                             >
                               SIGN IN
                             </a>

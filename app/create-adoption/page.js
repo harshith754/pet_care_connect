@@ -90,18 +90,15 @@ const page = () => {
     <header className="w-full flex flex-col items-center justify-center  gap-8 bg-[url('/-body@3x.png')] bg-cover bg-[top] top-0 text-white pb-8">
     
       <div className="pt-[60px] flex flex-col items-center justify-start gap-[16px] font-radio-canada">
-        <div className=" leading-[70px] font-semibold text-[50px]">
+        <div className=" leading-[70px] font-semibold text-[50px] sm:leading-10 sm:text-[40px] text-center">
           Place Pet for adoption
         </div>
-        <div className=" leading-[20px] font-puritan text-[25px]">
+        <div className=" leading-[25px]  font-puritan text-[25px] sm:text-[22px]">
           Open new doors for your pet.
         </div>
       </div>
 
-      <div className="bg-aliceblue-100 px-5 py-4 pt-8 flex flex-col items-center justify-center gap-[15px] rounded-xl">
-        
-        
-
+      <div className="bg-aliceblue-100 px-5 py-4 pt-8 flex flex-col items-center justify-center gap-[15px] rounded-xl sm:w-[75%]">
         { 
           imageId ?
             (<CldImage
@@ -119,7 +116,7 @@ const page = () => {
                   setImageId(result.info.public_id)
                 }}
                 uploadPreset="artPage"
-                className='w-[80%] text-gray-500 px-6 bg-white py-2 rounded-lg font-times'
+                className='w-[92%] text-gray-500 px-6 bg-white py-2 rounded-lg font-times'
               >
                 Upload an Image
               </CldUploadButton>
@@ -132,7 +129,7 @@ const page = () => {
           
           
           <input
-            className="flex flex-row gap-3 justify-center items-center min-w-[100px] w-10 text-[13px] text-gray-500 focus:outline-none focus:border-transparent placeholder-gray-500 font-times"
+            className="flex flex-row gap-3 justify-center items-center w-full text-center text-[13px] text-gray-500 focus:outline-none focus:border-transparent placeholder-gray-500 font-times"
             value={name}
             placeholder="Enter pet name"
             onChange={(e)=>{setName(e.target.value)}}
@@ -215,7 +212,7 @@ const page = () => {
         
         <div className=" flex flex-row items-center justify-center p-3 py-5">
           <Button
-            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-8 py-8"
+            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 w-[80%] sm:text-[14px] "
             style={{ backgroundColor:"#00ACE5" }}
             type="primary"
             size="middle"
