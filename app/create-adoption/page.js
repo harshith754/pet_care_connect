@@ -50,6 +50,11 @@ const page = () => {
 
   const handleSubmit=async (e)=>{
     e.preventDefault();
+
+    if(!session){
+      alert("Sign In First!!")
+      return
+    }
     setSubmitting(true);
 
     try{

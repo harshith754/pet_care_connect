@@ -8,7 +8,6 @@ import Pet from "@/models/pet";
 
 export const dynamic = 'force-dynamic';
 
-
 const fetchPets = async () =>{
   await connectToDB();    
   const pets = await Pet.find({});
