@@ -6,30 +6,32 @@ import CreateAdoptionSection from "@/components/LCreateAdoption";
 import { connectToDB } from "@/utils/database";
 import Pet from "@/models/pet";
 
-const LandingPage = async () => {
+export const dynamic = 'force-dynamic';
 
 
-
-  const fetchPets = async () =>{
-    await connectToDB();    
-    const pets = await Pet.find({});
+const fetchPets = async () =>{
+  await connectToDB();    
+  const pets = await Pet.find({});
+  
+  const petObjects = pets.map((pet) => ({
+    _id: pet._id.toString(), // convert ObjectId to string
+    creator: pet.creator.toString(),
+    city: pet.city,
+    name: pet.name,
+    breed: pet.breed,
+    gender: pet.gender,
+    size: pet.size,
+    age: pet.age,
+    imageId: pet.imageId,
     
-    const petObjects = pets.map((pet) => ({
-      _id: pet._id.toString(), // convert ObjectId to string
-      creator: pet.creator.toString(),
-      city: pet.city,
-      name: pet.name,
-      breed: pet.breed,
-      gender: pet.gender,
-      size: pet.size,
-      age: pet.age,
-      imageId: pet.imageId,
-      
-    }));
+  }));
 
-    return petObjects;
-  } 
+  return petObjects;
+} 
 
+
+
+const LandingPage = async () => {
   const petObjects = await fetchPets();
 
   return (
