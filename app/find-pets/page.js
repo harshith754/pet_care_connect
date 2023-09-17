@@ -14,7 +14,7 @@ const FindPet = ({ searchParams }) => {
 
   const fetchPets = async () => {
     try {
-      const response = await fetch('/api/pet');
+      const response = await axios.get('/api/pet');
       setAllPets(response.data);
     } catch (error) {
       console.error('Error fetching pets:', error);
@@ -29,7 +29,7 @@ const FindPet = ({ searchParams }) => {
 
   useEffect(() => {
     // Filter pets based on props when any of these props change
-    const filtered = allPets.filter((pet) => {
+    const filtered = allPets?.filter((pet) => {
       const sanitizedBreed = breed ? breed.replace(/\s+/g, '') : ''; // Remove spaces if breed is defined
       const sanitizedPetBreed = pet.breed.replace(/\s+/g, '');
 

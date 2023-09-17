@@ -13,8 +13,8 @@ const page = ({params}) => {
   const [pet,setPet]=useState(null)
 
   const fetchPetInfo= async ()=>{
-    const res=await fetch('/api/pet')
-    const pets=res.data;
+    const response = await axios.get('/api/pet');
+    const pets=response.data;
 
     console.log(pets)
 
