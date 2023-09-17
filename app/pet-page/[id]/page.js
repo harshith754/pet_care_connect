@@ -13,9 +13,13 @@ const page = ({params}) => {
   const [pet,setPet]=useState(null)
 
   const fetchPetInfo= async ()=>{
-    const res=await axios.get(`/api/pet/${id}`)
-    console.log(res.data)
-    setPet(res.data)
+    const res=await fetch('/api/pet')
+    const pets=res.data;
+
+    console.log(pets)
+
+    const petData = pets.find(pet => pet._id === id)
+    setPet(petData)
   }
 
   useEffect(()=>{

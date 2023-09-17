@@ -14,8 +14,7 @@ const FindPet = ({ searchParams }) => {
 
   const fetchPets = async () => {
     try {
-      const response = await axios.get('/api/pet');
-      console.log(response.data)
+      const response = await fetch('/api/pet');
       setAllPets(response.data);
     } catch (error) {
       console.error('Error fetching pets:', error);

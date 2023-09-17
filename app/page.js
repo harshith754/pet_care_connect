@@ -44,7 +44,7 @@ const LandingPage = async () => {
       <div className="w-full relative bg-deepskyblue h-[5px]" />
       <PlansSection />
       <div className="w-full relative bg-deepskyblue h-[5px]" />
-      <CreateAdoptionSection />
+      <CreateAdoptionSection pets={petObjects}/>
     </main>
   );
 };
