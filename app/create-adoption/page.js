@@ -136,7 +136,7 @@ const page = () => {
             className="flex flex-row gap-3 justify-center items-center h-[30px] rounded-lg text-[13px] px-4 bg-white w-full text-gray-500 focus:outline-none focus:border-transparent "
             value={name}
             placeholder="Enter pet name"
-            onChange={(e)=>{setBreed(e.target.value)}}
+            onChange={(e)=>{setName(e.target.value)}}
           >   
           </input>
         </div>
