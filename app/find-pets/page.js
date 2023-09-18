@@ -35,11 +35,13 @@ const FindPet = ({ searchParams }) => {
 
       return (
         (!age || pet.age === age) &&
-        (!breed || new RegExp(sanitizedBreed.toLowerCase()).test(sanitizedPetBreed.toLowerCase())) &&
         (!city || pet.city === city) &&
-        (!gender || pet.gender === gender) &&
         (!petType || pet.petType === petType) &&
-        (!size || pet.size === size)
+        (
+          (!breed || new RegExp(sanitizedBreed.toLowerCase()).test(sanitizedPetBreed.toLowerCase())) ||
+          (!gender || pet.gender === gender) ||
+          (!size || pet.size === size) 
+        )
       );
     });
     setFilteredPets(filtered);
@@ -49,8 +51,12 @@ const FindPet = ({ searchParams }) => {
     <div>
       <Navbar />
       <PetParams searchParams={searchParams} />
-      
-      <PetDisplay sectionTitle="Pets Near You" pets={filteredPets} />
+
+      {
+        filteredPets && (
+          <PetDisplay sectionTitle="Pets Near You" pets={filteredPets} />
+        )
+      }
 
     </div>
   );

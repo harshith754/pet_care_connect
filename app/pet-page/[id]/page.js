@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar'
 import { Button } from 'antd'
 import axios from 'axios'
 import { CldImage } from 'next-cloudinary'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 
@@ -27,7 +28,7 @@ const page = ({params}) => {
   },[])
 
   const adoptNow=()=>{
-    alert("Sent Adoption request(demo) !!")
+    alert(`Sent Adoption request(demo) to ${pet?.creator.username} !!`)
 
   }
 
@@ -79,7 +80,7 @@ const page = ({params}) => {
             </div>
             <div className=" relative bg-deepskyblue h-[1px] w-[40%]" />
             
-            <div className=" flex flex-col pt-2.5 px-0 pb-0 items-center justify-center text-[18px] leading-[40px] ">
+            <div className=" flex flex-col pt-2.5 px-0 pb-0 items-center justify-center text-[18px] leading-[30px] ">
               <div className="relative flex items-center justify-center ">
                 
                 {
@@ -110,6 +111,24 @@ const page = ({params}) => {
                   )
                 }
               </div>
+     
+              {
+                pet? (
+                  <div className="relative flex items-center justify-center ">
+                    Creator:   <Image
+                      src={pet.creator.image}
+                      width={27}
+                      height={27}
+                      className="rounded-full ml-3 mr-[3px]"
+                      alt="profile"
+                    /> {pet.creator.username}
+                  </div>
+                  
+                ):(
+                  "Creator"
+                )
+              }
+            
 
             </div>
           </div>

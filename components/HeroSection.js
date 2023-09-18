@@ -22,6 +22,7 @@ const HeroSection = () => {
       setPetType(value);
     } 
   }
+  
   const handleSubmit = ()=>{
     const queryParams ={
       city,
@@ -63,10 +64,10 @@ const HeroSection = () => {
               <DropdownMenu
                 value={city}
                 options={[
-                  { value: "Mumbai City" },
-                  { value: "Mumbai Suburban" },
-                  { value: "Pune" },
-                  { value: "Others" },
+                  { label: "Mumbai City"  ,value: "Mumbai City" },
+                  { label: "Mumbai Suburban"  ,value: "Mumbai Suburban" },
+                  { label: "Pune"  ,value: "Pune" },
+                  {label: "Others"  , value: "Others" },
                 ]}
                 placeholder={"Enter your city"}
                 handleClick={(value) => handleSelect(value, "city")} 
@@ -75,10 +76,10 @@ const HeroSection = () => {
               <DropdownMenu               
                 value={petType}
                 options={[
-                  { value: "Dog" },
-                  { value: "Cat" },
-                  { value: "Bird" },
-                  { value: "Others" },
+                  { label:"Dog", value: "Dog" },
+                  { label:"Cat",  value: "Cat" },
+                  { label:"Bird", value: "Bird" },
+                  { label:"Others", value: "Others" },
                 ]}
                 placeholder={"Select pet type"}
                 handleClick={(value) => handleSelect(value, "petType")} 

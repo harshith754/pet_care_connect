@@ -76,15 +76,15 @@ const PetParams = ( {searchParams} ) => {
           </div>
         </div>
 
-        <div className="px-5 sm:px-0 flex flex-wrap sm:flex-wrap items-center justify-center gap-[15px]">
+        <div className="px-5 sm:px-0 flex flex-wrap sm:flex-wrap sm:gap-0 items-center justify-center gap-[15px]">
             
             <DropdownMenu               
               value={city}
               options={[
-                { value: "Mumbai City" },
-                { value: "Mumbai Suburban" },
-                { value: "Pune" },
-                { value: "Others" },
+                { label: "Mumbai City"  ,value: "Mumbai City" },
+                { label: "Mumbai Suburban"  ,value: "Mumbai Suburban" },
+                { label: "Pune"  ,value: "Pune" },
+                {label: "Others"  , value: "Others" },
               ]}
               placeholder={"Enter your city"}
               handleClick={(value) => handleSelect(value, "city")}
@@ -94,10 +94,10 @@ const PetParams = ( {searchParams} ) => {
             <DropdownMenu               
               value={petType}
               options={[
-                { value: "Dog" },
-                { value: "Cat" },
-                { value: "Bird" },
-                { value: "Others" },
+                { label:"Dog", value: "Dog" },
+                { label:"Cat",  value: "Cat" },
+                { label:"Bird", value: "Bird" },
+                { label:"Others", value: "Others" },
               ]}
               placeholder={"Select pet type"}
               handleClick={(value) => handleSelect(value, "petType")} 
@@ -106,9 +106,9 @@ const PetParams = ( {searchParams} ) => {
           
 
           
-          <div className="flex flex-row justify-center items-center text-darkslategray px-6 bg-white py-2 rounded-lg text-[13px] sm:w-[65%]">
+          <div className="flex flex-row justify-center items-center text-darkslategray px-2 py-2 rounded-lg text-[13px] w-[160px] sm:w-[65%] ">
             <input
-              className="flex flex-row gap-3 justify-center items-center min-w-[100px] w-8 text-[13px] text-gray-500 focus:outline-none focus:border-transparent placeholder-gray-500 font-times"
+              className="flex flex-row gap-3 justify-center items-center h-[30px] rounded-lg text-[13px] px-4 bg-white w-full text-gray-500 focus:outline-none focus:border-transparent "
               value={breed}
               placeholder="Enter pet breed"
               onChange={(e)=>{setBreed(e.target.value)}}
@@ -118,38 +118,38 @@ const PetParams = ( {searchParams} ) => {
           <DropdownMenu               
               value={gender}
               options={[
-                { value: "Male" },
-                { value: "Female" },
+                { label:"Male", value: "Male" },
+                { label:"Female", value: "Female" },
 
               ]}
               placeholder={"Select pet gender"}
               handleClick={(value) => handleSelect(value, "gender")}           
-              styles={"sm:w-[65%]"} 
+              styles={"sm:w-[65%] "} 
           />
 
           <DropdownMenu               
             value={size}
             options={[
-              { value: "Small" },
-              { value: "Medium" },
-              { value: "Large" },
+              { label:"Small", value: "Small" },
+              { label:"Medium", value: "Medium" },
+              { label:"Large",  value: "Large" },
 
             ]}
             placeholder={"Select pet size"}
             handleClick={(value) => handleSelect(value, "size")}           
-            styles={"sm:w-[65%]"} 
+            styles={"sm:w-[65%] "} 
           />
 
           <DropdownMenu               
             value={age}
             options={[
-              { value: "Young" },
-              { value: "Adult" },
-              { value: "Old" },
+              { label:"Young", value: "Young" },
+              { label:"Adult", value: "Adult" },
+              { label:"Old", value: "Old" },
             ]}
             placeholder={"Select pet age"}
             handleClick={(value) => handleSelect(value, "age")}           
-            styles={"sm:w-[65%]"} 
+            styles={"sm:w-[65%] sm:hidden"} 
           />
         
           <div className=" flex flex-row sm:flex-col items-center justify-center gap-5 sm:gap-3 sm:mt-5">
