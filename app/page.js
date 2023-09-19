@@ -6,7 +6,7 @@ import CreateAdoptionSection from "@/components/LCreateAdoption";
 import { connectToDB } from "@/utils/database";
 import Pet from "@/models/pet";
 
-export const dynamic = 'force-dynamic';
+//export const dynamic = 'force-dynamic';
 
 const fetchPets = async () =>{
   await connectToDB();    
