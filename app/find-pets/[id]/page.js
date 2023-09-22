@@ -4,6 +4,8 @@ import PetImageDisplay from '@/components/PetImageDisplay'
 import Pet from '@/models/pet'
 import { connectToDB } from '@/utils/database'
 import Image from 'next/image'
+import User from '@/models/user';
+
 
 const fetchPets = async (id) =>{
   await connectToDB(); 
@@ -38,10 +40,7 @@ const page = async  ({params}) => {
   const {id}=params
 
   const pet= await fetchPets(id);
-  const petCreator=pet.creator
   
-  console.log(typeof petCreator)
-  console.log("here" +petCreator)
 
   
 

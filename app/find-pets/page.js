@@ -3,6 +3,7 @@ import PetDisplay from "@/components/PetDisplay";
 import PetParams from "@/components/PetParams";
 import Pet from "@/models/pet";
 import { connectToDB } from "@/utils/database";
+import User from '@/models/user';
 
 const fetchPets = async () =>{
   await connectToDB(); 
@@ -11,7 +12,13 @@ const fetchPets = async () =>{
   
   const petObjects = pets.map((pet) => ({
     _id: pet._id.toString(), // convert ObjectId to string
-    creator: pet.creator.toString(),
+    creator:  pet.creator && pet.creator._id ? {
+      _id: pet.creator._id.toString(), // convert creator's _id to a string
+      email: pet.creator.email,
+      username: pet.creator.username,
+      image: pet.creator.image,
+      __v: pet.creator.__v
+    } : null,
     city: pet.city,
     name: pet.name,
     breed: pet.breed,
@@ -29,13 +36,11 @@ const fetchPets = async () =>{
 const FindPet = async ({ searchParams }) => {
 
   const { age, breed, city, gender, petType, size } = searchParams;
-  console.log(age,breed,city,gender,petType,size)
   const allPets= await fetchPets();
 
   
 
   const filteredPets = allPets.filter((pet) => {
-    console.log(pet.creator)
     return (
       (!city || pet.city === city) &&
       (!petType || pet.petType === petType) 
