@@ -1,51 +1,68 @@
-"use client"
-
 import Navbar from "@/components/Navbar";
 import PetDisplay from "@/components/PetDisplay";
 import PetParams from "@/components/PetParams";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import Pet from "@/models/pet";
+import { connectToDB } from "@/utils/database";
 
-const FindPet = ({ searchParams }) => {
+const fetchPets = async () =>{
+  await connectToDB(); 
+     
+  const pets = await Pet.find({}).populate('creator');
+  
+  const petObjects = pets.map((pet) => ({
+    _id: pet._id.toString(), // convert ObjectId to string
+    creator: pet.creator.toString(),
+    city: pet.city,
+    name: pet.name,
+    breed: pet.breed,
+    gender: pet.gender,
+    size: pet.size,
+    age: pet.age,
+    imageId: pet.imageId,
+    petType:pet.petType
+    
+  }));
+
+  return petObjects;
+} 
+
+const FindPet = async ({ searchParams }) => {
 
   const { age, breed, city, gender, petType, size } = searchParams;
-  const [allPets, setAllPets] = useState([]); // Store all pets
-  const [filteredPets, setFilteredPets] = useState([]); // Store filtered pets
-
-  const fetchPets = async () => {
-    try {
-      const response = await axios.get('/api/pet');
-      setAllPets(response.data);
-    } catch (error) {
-      console.error('Error fetching pets:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPets();
-  }, [petType]); // Fetch pets based on petType
+  console.log(age,breed,city,gender,petType,size)
+  const allPets= await fetchPets();
 
   
 
-  useEffect(() => {
-    // Filter pets based on props when any of these props change
-    const filtered = allPets?.filter((pet) => {
-      const sanitizedBreed = breed ? breed.replace(/\s+/g, '') : ''; // Remove spaces if breed is defined
-      const sanitizedPetBreed = pet.breed.replace(/\s+/g, '');
+  const filteredPets = allPets.filter((pet) => {
+    console.log(pet.creator)
+    return (
+      (!city || pet.city === city) &&
+      (!petType || pet.petType === petType) 
+    );
+    }).sort((petA, petB) => {
+    const sanitizedBreed = breed ? breed.replace(/\s+/g, '') : ''; // Remove spaces if breed is defined
+    const sanitizedPetBreedA = petA.breed.replace(/\s+/g, '')
+    const sanitizedPetBreedB = petB.breed.replace(/\s+/g, '')
+    const trueConditionCountA = [
+      (!breed || new RegExp(sanitizedBreed.toLowerCase()).test(sanitizedPetBreedA.toLowerCase())),
+      (!gender || petA.gender === gender),
+      (!size || petA.size === size),
+      (!age || petA.age === age)
+    ].filter(condition => condition === true).length;
+  
+    const trueConditionCountB = [
+      (!breed || new RegExp(sanitizedBreed.toLowerCase()).test(sanitizedPetBreedB.toLowerCase())),
+      (!gender || petB.gender === gender),
+      (!size || petB.size === size),
+      (!age || petB.age === age)
+    ].filter(condition => condition === true).length;
+  
+    // Sort pets based on the number of true conditions.
+    return trueConditionCountB - trueConditionCountA;
+  });
+  
 
-      return (
-        (!age || pet.age === age) &&
-        (!city || pet.city === city) &&
-        (!petType || pet.petType === petType) &&
-        (
-          (!breed || new RegExp(sanitizedBreed.toLowerCase()).test(sanitizedPetBreed.toLowerCase())) ||
-          (!gender || pet.gender === gender) ||
-          (!size || pet.size === size) 
-        )
-      );
-    });
-    setFilteredPets(filtered);
-  }, [age, breed, city, gender, petType, size,allPets]);
 
   return (
     <div>

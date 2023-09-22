@@ -11,7 +11,7 @@ const DogCard = ({pet}) => {
   });
 
   const redirect =()=>{
-    router.push(`/pet-page/${pet._id}`) 
+    router.push(`/find-pets/${pet._id}`) 
   }
   
   return (

@@ -1,36 +1,49 @@
-"use client"
-
+import AdoptPetButton from '@/components/AdoptPetButton'
 import Navbar from '@/components/Navbar'
-import { Button } from 'antd'
-import axios from 'axios'
-import { CldImage } from 'next-cloudinary'
+import PetImageDisplay from '@/components/PetImageDisplay'
+import Pet from '@/models/pet'
+import { connectToDB } from '@/utils/database'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
 
+const fetchPets = async (id) =>{
+  await connectToDB(); 
+     
+  const pets = await Pet.find({}).populate('creator');
 
-const page = ({params}) => {
+  
+  const petObjects = pets.map((pet) => ({
+    _id: pet._id.toString(), // convert ObjectId to string
+    creator:  pet.creator && pet.creator._id ? {
+      _id: pet.creator._id.toString(), // convert creator's _id to a string
+      email: pet.creator.email,
+      username: pet.creator.username,
+      image: pet.creator.image,
+      __v: pet.creator.__v
+    } : null,
+    city: pet.city,
+    name: pet.name,
+    breed: pet.breed,
+    gender: pet.gender,
+    size: pet.size,
+    age: pet.age,
+    imageId: pet.imageId,
+    petType:pet.petType
+    
+  }));
+
+  return petObjects.find(pet => pet._id === id);
+} 
+
+const page = async  ({params}) => {
   const {id}=params
 
-  const [pet,setPet]=useState(null)
+  const pet= await fetchPets(id);
+  const petCreator=pet.creator
+  
+  console.log(typeof petCreator)
+  console.log("here" +petCreator)
 
-  const fetchPetInfo= async ()=>{
-    const response = await axios.get('/api/pet');
-    const pets=response.data;
-
-    console.log(pets)
-
-    const petData = pets.find(pet => pet._id === id)
-    setPet(petData)
-  }
-
-  useEffect(()=>{
-    fetchPetInfo();
-  },[])
-
-  const adoptNow=()=>{
-    alert(`Sent Adoption request(demo) to ${pet?.creator.username} !!`)
-
-  }
+  
 
   return (
     <div className="relative bg-white w-full flex flex-col items-center justify-center text-center text-darkslategray font-radio-canada">
@@ -49,13 +62,8 @@ const page = ({params}) => {
         
         { 
           pet? (
-            <CldImage
-              width={250}
-              height={280}
-              crop="fill"
-              src={pet.imageId}
-              alt="image"
-              className="rounded-lg flex flex-col box-border items-center justify-end"
+            <PetImageDisplay 
+              imageId={pet.imageId}
             />
           ):(
             "Loading..."
@@ -111,6 +119,8 @@ const page = ({params}) => {
                   )
                 }
               </div>
+
+
      
               {
                 pet? (
@@ -123,7 +133,6 @@ const page = ({params}) => {
                       alt="profile"
                     /> {pet.creator.username}
                   </div>
-                  
                 ):(
                   "Creator"
                 )
@@ -133,16 +142,9 @@ const page = ({params}) => {
             </div>
           </div>
           <div className=" flex flex-row items-center justify-center p-3 py-5">
-            <Button
-              className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 w-[80%] sm:text-[14px] "
-              style={{ backgroundColor:"#00ACE5" }}
-              type="primary"
-              size="middle"
-              shape="default"
-              onClick={adoptNow}
-            >
-              Adopt Now!!
-            </Button>
+            <AdoptPetButton 
+             creator={pet.creator}
+            />
           </div>
 
         </div>

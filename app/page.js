@@ -9,7 +9,8 @@ import Pet from "@/models/pet";
 //export const dynamic = 'force-dynamic';
 
 const fetchPets = async () =>{
-  await connectToDB();    
+  await connectToDB(); 
+     
   const pets = await Pet.find({});
   
   const petObjects = pets.map((pet) => ({
@@ -22,7 +23,7 @@ const fetchPets = async () =>{
     size: pet.size,
     age: pet.age,
     imageId: pet.imageId,
-    
+    petType:pet.petType
   }));
 
   return petObjects;
@@ -39,7 +40,7 @@ const LandingPage = async () => {
       <div className="w-full relative bg-deepskyblue h-[5px]" />
       <PetDisplay
         sectionTitle="Pets Near You"
-        pets={petObjects}
+        pets={petObjects }
       />
       <div className="w-full relative bg-deepskyblue h-[5px]" />
       <PlansSection />
