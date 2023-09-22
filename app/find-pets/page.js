@@ -5,6 +5,8 @@ import Pet from "@/models/pet";
 import { connectToDB } from "@/utils/database";
 import User from '@/models/user';
 
+export const revalidate =10*60
+
 const fetchPets = async () =>{
   await connectToDB(); 
      

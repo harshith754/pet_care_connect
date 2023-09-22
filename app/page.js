@@ -9,6 +9,8 @@ import User from '@/models/user';
 
 //export const dynamic = 'force-dynamic';
 
+export const revalidate =10*60
+
 const fetchPets = async () =>{
   await connectToDB(); 
      
