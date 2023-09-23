@@ -5,6 +5,8 @@ import Pet from '@/models/pet'
 import { connectToDB } from '@/utils/database'
 import Image from 'next/image'
 import User from '@/models/user';
+import EditButton from '@/components/EditButton'
+
 
 
 const fetchPets = async (id) =>{
@@ -41,7 +43,6 @@ const page = async  ({params}) => {
 
   const pet= await fetchPets(id);
   
-
   
 
   return (
@@ -132,18 +133,25 @@ const page = async  ({params}) => {
                       alt="profile"
                     /> {pet.creator.username}
                   </div>
+                  
                 ):(
                   "Creator"
                 )
               }
-            
+
+              
 
             </div>
           </div>
-          <div className=" flex flex-row items-center justify-center p-3 py-5">
+          <div className=" flex flex-row items-center justify-center p-3 py-5 gap-6 sm:gap-3">
             <AdoptPetButton 
              creator={pet.creator}
             />
+             
+             <EditButton 
+              creator={pet.creator}
+              petId={id}
+             />
           </div>
 
         </div>
