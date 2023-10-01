@@ -25,7 +25,9 @@ export const GET = async (req,{params}) => {
 
 
 export const PUT = async (req,{params}) => {
-  const { id,name ,city ,petType ,breed ,age ,gender, size,userId,imageId } = await req.json();
+  const { name ,city ,petType ,breed ,age ,gender, size,userId,imageId } = await req.json();
+
+  const id= params.id 
   try {
     await connectToDB();  //need to connect every time since its lambda function(will die after finishing job)
     console.log(id)

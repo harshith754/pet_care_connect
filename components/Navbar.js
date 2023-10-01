@@ -62,7 +62,7 @@ const Navbar = ( ) => {
                   SIGN OUT
                 </a>
 
-                <Link href="/profile">
+                <Link href={`/profile/${session?.user.id}`}>
                   <Image 
                     src={session?.user.image}
                     width={37}
@@ -80,7 +80,7 @@ const Navbar = ( ) => {
                   Object.values(providers).map( (provider) => (
                     <a
                       type='button'
-                      className="hover:cursor-pointer md:hidden"
+                      className=" md:hidden"
                       key={provider.name}
                       onClick={ () => signIn(provider.id) }                    >
                       SIGN IN
@@ -121,6 +121,14 @@ const Navbar = ( ) => {
                         <Link href="/create-adoption"
                           className=' tracking-wide no-underline'>
                           CREATE ADOPTION LISTING
+                        </Link>
+
+                        <Link href={`/profile/${session?.user.id}`}
+                          className=' tracking-wide no-underline'
+                        >
+                          VIEW PROFILE
+
+
                         </Link>
 
                         <a 
@@ -165,13 +173,15 @@ const Navbar = ( ) => {
                           CREATE ADOPTION LISTING
                         </Link>
 
+
+
                         {providers && 
                           Object.values(providers).map( (provider) => (
                             <a
                               type='button'
                               key={provider.name}
                               onClick={ () => signIn(provider.id) }
-                              className="hover:cursor-pointer"
+                              className="hover:cursor-pointer tracking-wide"
                             >
                               SIGN IN
                             </a>

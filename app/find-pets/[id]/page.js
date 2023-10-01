@@ -6,6 +6,7 @@ import { connectToDB } from '@/utils/database'
 import Image from 'next/image'
 import User from '@/models/user';
 import EditButton from '@/components/EditButton'
+import PetBreed from '@/components/petBreed'
 
 
 
@@ -80,10 +81,18 @@ const page = async  ({params}) => {
             <div className=" flex flex-row p-2.5 items-center text-[22px]  ">
             {
               pet? (
-                `${pet.breed} - ${pet.city}`
+                <>
+                  <PetBreed 
+                    breed={pet.breed}
+                  />
+                  {` - ${pet.city}`}
+                </>
+                
+
               ):(
                 "Breed - City"
               )
+              
             }
             </div>
             <div className=" relative bg-deepskyblue h-[1px] w-[40%]" />
@@ -123,7 +132,7 @@ const page = async  ({params}) => {
 
      
               {
-                pet? (
+                pet.creator? (
                   <div className="relative flex items-center justify-center ">
                     Creator:   <Image
                       src={pet.creator.image}

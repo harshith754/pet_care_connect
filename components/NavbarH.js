@@ -61,7 +61,7 @@ const Navbar = ( ) => {
                   SIGN OUT
                 </a>
 
-                <Link href="/profile">
+                <Link href={`/profile/${session?.user.id}`}>
                   <Image 
                     src={session?.user.image}
                     width={37}
@@ -120,6 +120,13 @@ const Navbar = ( ) => {
                         <Link href="/create-adoption"
                           className=' tracking-wide no-underline'>
                           CREATE ADOPTION LISTING
+                        </Link>
+                        <Link href={`/profile/${session?.user.id}`}
+                          className=' tracking-wide no-underline'
+                        >
+                          VIEW PROFILE
+
+
                         </Link>
 
                         <a 
