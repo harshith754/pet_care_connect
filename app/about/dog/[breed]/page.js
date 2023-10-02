@@ -24,7 +24,6 @@ const fetchBreedInfo = async (breed) =>{
     return response.data[0]
   } catch (error) {
     console.log(error);
-    alert("Cant find breed")
   }
 } 
 
