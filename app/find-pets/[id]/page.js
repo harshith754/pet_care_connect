@@ -6,7 +6,7 @@ import { connectToDB } from '@/utils/database'
 import Image from 'next/image'
 import User from '@/models/user';
 import EditButton from '@/components/EditButton'
-import PetBreed from '@/components/petBreed'
+import PetBreed from '@/components/PetBreed'
 
 
 
