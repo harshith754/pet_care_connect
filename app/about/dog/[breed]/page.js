@@ -1,109 +1,99 @@
-
+"use client"
 import Navbar from '@/components/Navbar'
 import axios from 'axios';
 import Image from 'next/image'
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 
 
-const fetchBreedInfo = async (breed) =>{
-  const options = {
-    method: 'GET',
-    url: 'https://dogs-by-api-ninjas.p.rapidapi.com/v1/dogs',
-    params: {
-      name: breed
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-      'X-RapidAPI-Host': 'dogs-by-api-ninjas.p.rapidapi.com'
-    }
-  };
-  
-  try {
-    const response = await axios.request(options);
-    return response.data[0]
-  } catch (error) {
-    console.log(error);
-  }
-} 
 
 
-const fetchYoutubeInfo= async (breed)=>{
-  const apiKey = process.env.YOUTUBE_API_KEY;
-  const searchQuery = breed;
-  const maxResults = 6;
 
-  const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?maxResults=${maxResults}&q=adopt-${searchQuery}&key=${apiKey}`;
-
-  try{
-    const response =await axios.get(apiUrl);
-
-    const videos = response.data.items;
-    const filteredVidoes = videos.filter((video)=>( video.id.kind==='youtube#video' ))
-   // console.log('YouTube API Response:', filteredVidoes);
-    return filteredVidoes;
-  } catch (e){
-    console.log(e)
-  }    
-}
-
-const page = async  ({params}) => {
+const page = ({params}) => {
   const {breed}=params
+
   const decodedBreed= decodeURIComponent(breed)
 
-  const info= await fetchBreedInfo(decodedBreed);
+  const [info,setInfo]= useState({});
+  const [videos,setVideos]= useState();
 
-  const videos = await fetchYoutubeInfo(decodedBreed)
-  // [
-  //   {
-  //     "kind": "youtube#searchResult",
-  //     "etag": "P27dBWGIeVCfQjxQzIGHhS9HqLc",
-  //     "id": {
-  //       "kind": "youtube#video",
-  //       "videoId": "u3mKsRehzRc"
-  //     }
-  //   },
-  //   {
-  //     "kind": "youtube#searchResult",
-  //     "etag": "oDnHdzEmyFYjoplp2oX24DoSKwc",
-  //     "id": {
-  //       "kind": "youtube#video",
-  //       "videoId": "RXPqXMf4VuQ"
-  //     }
-  //   },
-  //   {
-  //     "kind": "youtube#searchResult",
-  //     "etag": "x7EIpGS_sjUu6lYfvKxiBLdFSxg",
-  //     "id": {
-  //       "kind": "youtube#video",
-  //       "videoId": "tSfRLTHFZLA"
-  //     }
-  //   },
-  //   {
-  //     "kind": "youtube#searchResult",
-  //     "etag": "hJUDJ178wh_yn4WoTG-9qZd6Umw",
-  //     "id": {
-  //       "kind": "youtube#video",
-  //       "videoId": "3Huo6hdCUbk"
-  //     }
-  //   },
-  //   {
-  //     "kind": "youtube#searchResult",
-  //     "etag": "eongT6QP-0A6gSK3oW_CjnYrhkU",
-  //     "id": {
-  //       "kind": "youtube#video",
-  //       "videoId": "CBMpMqKRd_8"
-  //     }
-  //   },
-  //   {
-  //     "kind": "youtube#searchResult",
-  //     "etag": "FIE09nxl4xGxL5jDwDFzdlFHQrc",
-  //     "id": {
-  //       "kind": "youtube#video",
-  //       "videoId": "R_wS4dsoo8o"
-  //     }
-  //   }
-  // ]
+  useEffect(() => {
+        
+    const fetchBreedInfo = async (breed) =>{
+      const options = {
+        method: 'GET',
+        url: 'https://dogs-by-api-ninjas.p.rapidapi.com/v1/dogs',
+        params: {
+          name: breed
+        },
+        headers: {
+          'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+          'X-RapidAPI-Host': 'dogs-by-api-ninjas.p.rapidapi.com'
+        }
+      };
+      
+      try {
+        const response = await axios.request(options)
+        if (response.data.length===0) {
+          throw new Error('Data not found')
+        }
+        toast.success("Successfully fetched breed Info!")
+
+        console.log(response)
+        setInfo(response.data[0]);
+
+      } catch (error) {
+        console.log(error);
+        toast.error("Invalid Dog breed!!")
+      }
+      
+
+    } 
+
+    const fetchYoutubeInfo= async (breed)=>{
+      const apiKey = process.env.YOUTUBE_API_KEY;
+      const maxResults = 6;
+      const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?maxResults=${maxResults}&q=adopt-${breed}&key=${apiKey}`;
+    
+      try{
+        const response =await axios.get(apiUrl);
+    
+        const videos = response.data.items;
+        const filteredVidoes = videos.filter((video)=>( video.id.kind==='youtube#video' ))
+      // console.log('YouTube API Response:', filteredVidoes);
+
+
+        setVideos(filteredVidoes)
+        toast.success("Successfully fetched youtube recommendations!")
+
+      
+        } catch (e){
+        console.log(e)
+        toast.error("There was a problem fetching videos!!")
+      }    
+
+    }
+
+    fetchBreedInfo(decodedBreed)
+    console.log(info)
+
+
+    fetchYoutubeInfo(decodedBreed)
+     //setVideos([{"kind": "youtube#searchResult", "etag": "P27dBWGIeVCfQjxQzIGHhS9HqLc", "id": {"kind": "youtube#video", "videoId": "u3mKsRehzRc"}}, {"kind": "youtube#searchResult", "etag": "oDnHdzEmyFYjoplp2oX24DoSKwc", "id": {"kind": "youtube#video", "videoId": "RXPqXMf4VuQ"}}, {"kind": "youtube#searchResult", "etag": "x7EIpGS_sjUu6lYfvKxiBLdFSxg", "id": {"kind": "youtube#video", "videoId": "tSfRLTHFZLA"}}, {"kind": "youtube#searchResult", "etag": "hJUDJ178wh_yn4WoTG-9qZd6Umw", "id": {"kind": "youtube#video", "videoId": "3Huo6hdCUbk"}}, {"kind": "youtube#searchResult", "etag": "eongT6QP-0A6gSK3oW_CjnYrhkU", "id": {"kind": "youtube#video", "videoId": "CBMpMqKRd_8"}}, {"kind": "youtube#searchResult", "etag": "FIE09nxl4xGxL5jDwDFzdlFHQrc", "id": {"kind": "youtube#video", "videoId": "R_wS4dsoo8o"}}])
+
+    
+
+
+    
+
+    
+
+  }, [])
+  
+  
+  
   
 
   return (
@@ -112,17 +102,15 @@ const page = async  ({params}) => {
       <div className=" bg-aliceblue-100 flex flex-col items-center justify-center gap-2 pt-5 w-full">
           <div className=" relative leading-[48px] text-[40px] sm:text-[30px]">
             {
-              info? (
+              info && (
                 `${info.name} - Dog`
-              ):(
-                "Name - Type"
               )
             }
             
           </div>
         
         { 
-          info? (
+          info && (
             <Image 
               width={400}
               height={280}
@@ -131,8 +119,6 @@ const page = async  ({params}) => {
               alt="image"
               className="rounded-lg flex flex-col box-border items-center justify-end"
             />
-          ):(
-            "Loading..."
           )
            
         }
@@ -215,7 +201,7 @@ const page = async  ({params}) => {
                           height={180}
                           crop='fill'
                           className='rounded-lg '
-
+                          alt='image'
                         />
 
                         

@@ -9,6 +9,7 @@ import { CldImage, CldUploadButton } from 'next-cloudinary';
 
 import { useSession} from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 const page = () => {
   const { data: session }= useSession();
@@ -75,11 +76,14 @@ const page = () => {
 
       console.log(response);
 
+      toast.success("Created Pet Successfully :)")
       if(response.status === 201) {
         router.push('/');
       }
 
     } catch(error) {
+      toast.error("There was an error creating pet :( \n"+error.response.data)
+
       console.log(error)
     } finally {
       setSubmitting(false);

@@ -3,12 +3,9 @@ import { Button } from "antd";
 import DropdownMenu from "@/components/DropdownMenu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const PetParams = ( {searchParams} ) => {
-
-  
-
-
   const router = useRouter()
 
   const [city,setCity] = useState(searchParams.city || "");
@@ -46,7 +43,7 @@ const PetParams = ( {searchParams} ) => {
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&');
 
-
+    toast.success('Filters applied!')
     router.push(`/find-pets?${queryString}`,{ scroll: false })
   }
 
@@ -57,6 +54,7 @@ const PetParams = ( {searchParams} ) => {
     setGender("")
     setSize("")
     setAge("")
+    toast.success('Cleared filters!')
 
     router.push("/find-pets")
   }

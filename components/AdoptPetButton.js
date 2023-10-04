@@ -1,12 +1,17 @@
 "use client"
 import { Button } from 'antd'
 import React from 'react'
+import { toast } from 'sonner'
 
 
 const AdoptPetButton = ({creator}) => {
   const adoptNow=()=>{
-    alert(`Sent Adoption request(demo) to ${creator.username} !!`)
-
+    if(creator){
+      toast.success(`Sent Adoption request(demo) to ${creator.username} !!`)
+    }
+    else {
+      toast.error('Creator currently unavailable... Try again later!!')
+    }
   }
   return (
     <Button
