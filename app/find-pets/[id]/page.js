@@ -152,9 +152,9 @@ const page = async  ({params}) => {
 
             </div>
           </div>
-          <div className=" flex flex-row items-center justify-center p-3 py-5 gap-6 sm:gap-3">
+          <div className=" flex flex-col w-full items-center justify-center py-5 gap-6 sm:gap-3 ">
             <AdoptPetButton 
-             creator={pet.creator}
+             pet={pet}
             />
              
              <EditButton 

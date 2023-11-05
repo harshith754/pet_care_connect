@@ -86,10 +86,6 @@ const page = ({params}) => {
     
 
 
-    
-
-    
-
   }, [])
   
   
