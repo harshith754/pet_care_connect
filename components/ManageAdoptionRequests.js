@@ -20,7 +20,7 @@ const ManageAdoptionRequests = ({adoptionRequests}) => {
         {
           adoptionRequests.map(adoptionRequest =>(
 
-           <AdoptionRequest adoptionRequest={adoptionRequest} key={adoptionRequest._id}/>
+           <AdoptionRequest adoptionRequest={adoptionRequest} />
           ))  
           
         }

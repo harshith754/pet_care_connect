@@ -40,6 +40,8 @@ const FindPet = async ({ searchParams }) => {
   const { age, breed, city, gender, petType, size } = searchParams;
   const allPets= await fetchPets();
 
+  
+
   const filteredPets = allPets.filter((pet) => {
     return (
       (!city || pet.city === city) &&
@@ -76,7 +78,7 @@ const FindPet = async ({ searchParams }) => {
 
       {
         filteredPets && (
-          <PetDisplay sectionTitle="Pets For You :)" pets={filteredPets} />
+          <PetDisplay sectionTitle="Pets Near You" pets={filteredPets} />
         )
       }
 

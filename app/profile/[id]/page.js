@@ -117,6 +117,8 @@ const page =async ({params}) => {
   if(!user.name){
 
     if(myAdoptionRequests.length >0) {
+      const name = myAdoptionRequests[0].name;
+      const address = myAdoptionRequests[0].address;
       user.name = myAdoptionRequests[0].name;
       user.address = myAdoptionRequests[0].address;
       user.phoneNumber = myAdoptionRequests[0].phoneNumber;
@@ -207,7 +209,7 @@ const page =async ({params}) => {
             {
               myAdoptionRequests && (
                 myAdoptionRequests.map(adoptionRequest => (
-                  <div className='flex flex-row justify-center items-center bg-white rounded-3xl p-6  gap-2' key={adoptionRequest._id.toString()}>
+                  <div className='flex flex-row justify-center items-center bg-white rounded-3xl p-6  gap-2'>
                     
                     {/* <div className='flex flex-row justify-center ' >Name :&nbsp; &nbsp; { adoptionRequest.name}</div>
                     <div className='flex flex-row justify-center'>Email : &nbsp; &nbsp; {adoptionRequest.email}</div>
