@@ -96,6 +96,7 @@ const page = ({params}) => {
 
       console.log(response);
       alert("Updated Pet successfully!!")
+    
 
       if(response.status === 201) {
         router.push('/');
@@ -272,6 +273,7 @@ const page = ({params}) => {
             size="middle"
             shape="default"
             onClick={(e)=>handleSubmit(e)}
+            disabled={submitting}
           >
             {submitting? 'Sending pet Information...':'Update Pet Adoption Listing!!'}
           </Button>
@@ -283,6 +285,7 @@ const page = ({params}) => {
             size="middle"
             shape="default"
             onClick={(e)=>handleDelete(e)}
+            disabled={submitting}
           >
             {submitting? 'Sending pet Information...':'Delete Pet Adoption Listing!!'}
           </Button>

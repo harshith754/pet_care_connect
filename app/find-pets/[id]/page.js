@@ -153,6 +153,7 @@ const page = async  ({params}) => {
             </div>
           </div>
           <div className=" flex flex-col w-full items-center justify-center py-5 gap-6 sm:gap-3 ">
+            
             <AdoptPetButton 
              pet={pet}
             />
