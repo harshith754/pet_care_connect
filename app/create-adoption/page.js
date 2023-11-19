@@ -220,8 +220,8 @@ const page = () => {
         
         <div className=" flex flex-row items-center justify-center p-3 py-5">
           <Button
-            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 w-[80%] sm:text-[14px] "
-            style={{ backgroundColor:"#00ACE5" }}
+            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 w-[80%] sm:text-[14px] bg-deepskyblue"
+           
             type="primary"
             size="middle"
             shape="default"

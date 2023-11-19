@@ -98,8 +98,7 @@ const AdoptPetButton = ({pet}) => {
 
     < div className='flex flex-col justify-center items-center w-full'>
       {!clicked && session?.user.id != creator?._id && <Button
-        className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 sm:text-[14px] "
-        style={{ backgroundColor:"#00ACE5" }}
+        className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 sm:text-[14px] bg-deepskyblue"
         type="primary"
         size="middle"
         shape="default"
@@ -154,8 +153,7 @@ const AdoptPetButton = ({pet}) => {
           </div>
 
           <Button
-            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 sm:text-[14px] "
-            style={{ backgroundColor:"#00ACE5" }}
+            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-12 sm:px-8 py-8 sm:text-[14px] bg-deepskyblue"
             type="primary"
             size="middle"
             shape="default"

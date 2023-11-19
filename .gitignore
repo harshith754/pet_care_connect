@@ -2,9 +2,13 @@
 
 # dependencies
 /node_modules
-/app/tests
 /.pnp
 .pnp.js
+
+#tests and docker
+/app/tests
+DockerFile
+
 
 # testing
 /coverage

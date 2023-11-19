@@ -70,8 +70,8 @@ const PetDisplay = ({sectionTitle, pets}) => {
       {
         showButton &&
         <Button
-        className=" mt-10 flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-xl"
-        style={{ width: "220px",height:"50px", backgroundColor:"#00ACE5"}}
+        className=" mt-10 flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-xl bg-deepskyblue"
+        style={{ width: "220px",height:"50px"}}
         type="primary"
         size="middle"
         shape="default"

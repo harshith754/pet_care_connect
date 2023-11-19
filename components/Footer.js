@@ -11,7 +11,12 @@ const Footer = () => {
         <div className="flex-1 flex flex-row items-center justify-end gap-[20px] sm:gap-1 text-[15px] sm:text-[8px] text-white font-inter mr-8 sm:mr-0">
           <div className="relative">Vaccination and Healthcare</div>
           <div className="self-stretch sm:hidden relative bg-aliceblue-100 w-[1px] " />
-          <div className="relative">Pet adoption FAQ’s</div>
+          <div className="relative">
+            Contact :  kunderharshith3@gmail.com
+            {/* <a href="https://www.linkedin.com/in/harshith-kunder-7660b822a/"
+              className="no-underline text-blue-800 font-semibold px-3"
+            >Linked In</a> */}
+          </div>
           <div className="self-stretch sm:hidden relative bg-aliceblue-100 w-[1px] " />
           <div className="relative">{`Pet care connect© 2023 `}</div>
         </div>

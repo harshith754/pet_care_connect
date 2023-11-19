@@ -22,8 +22,7 @@ const CreateAdoptionSection = () => {
         <div className="flex flex-col items-center justify-center z-[0]">
           
           <Button
-            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-8 py-8 mb-5"
-            style={{ backgroundColor:"#00ACE5" }}
+            className="flex justify-center cursor-pointer items-center text-[20px] text-white font-jua rounded-xl px-8 py-8 mb-5 bg-deepskyblue"
             type="primary"
             size="middle"
             shape="default"

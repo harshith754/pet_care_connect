@@ -29,7 +29,7 @@ const DogCard = ({pet}) => {
         alt="image"
         className="absolute rounded-xl flex flex-col box-border items-center justify-end"
       />
-      <div className=" flex flex-col justify-center items-center gap-7 rounded-t-none rounded-b-xl bg-deepskyblue h-[70px] w-full z-10 py-1">
+      <div className=" flex flex-col justify-center items-center gap-7 rounded-t-none rounded-b-xl h-[70px] w-full z-10 py-1  bg-deepskyblue">
         <div className="w-full flex flex-col items-center justify-center ">
           <b className="relative tracking-[0.05em]  text-[20px] text-white">
             {pet.name}

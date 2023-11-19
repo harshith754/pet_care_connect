@@ -148,8 +148,8 @@ const PetParams = ( {searchParams} ) => {
         
           <div className=" flex flex-col sm:flex-col items-center justify-center gap-5 sm:gap-3 sm:mt-5">
             <Button
-              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg "
-              style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
+              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue"
+              style={{ width: "150px",height:"50px"}}
               type="primary"
               size="middle"
               shape="default"
@@ -159,8 +159,8 @@ const PetParams = ( {searchParams} ) => {
               Search
             </Button>
             <Button
-              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg "
-              style={{ width: "150px",height:"50px", backgroundColor:"#00ACE5"}}
+              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue"
+              style={{ width: "150px",height:"50px"}}
               type="primary"
               size="middle"
               shape="default"
