@@ -70,8 +70,9 @@ module.exports = {
       },
     },
     backgroundImage: {
-      "deepskyblue": 'linear-gradient(90deg, rgba(0,172,229,1) 0%, rgba(35,202,230,1) 22%, rgba(69,224,220,1) 47%, rgba(22,203,249,1) 74%, rgba(0,172,229,1) 100%)',
+      "deepskyblue": ' linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);',
     },
+    
 
   },
   corePlugins: {
