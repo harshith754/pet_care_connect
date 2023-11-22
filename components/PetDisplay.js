@@ -2,7 +2,6 @@
 import { Button } from "antd";
 import DogCard from "@/components/DogCard";
 import { useEffect, useState } from "react";
-import { motion,useAnimate } from 'framer-motion';
 
 
 
@@ -29,25 +28,6 @@ const PetDisplay = ({sectionTitle, pets}) => {
     }
   }
 
-
-  
-const staggerVariants = {
-  animate: {
-    transition: {
-      staggerChildren: 0.4, // Adjust the stagger delay as needed
-    },
-  },
-};
-
-const cardVariants = {
-  initial: { x: -100, opacity: 0 },
-  animate: { x: 0, opacity: 1 ,  transition: { ease: "easeIn" }},
-
-};
-
-
-  
-
   return (
     <div className="bg-aliceblue-100 flex flex-col items-center justify-center py-[60px]">
       
@@ -69,21 +49,22 @@ const cardVariants = {
           
       }
       
-      <motion.div
-        className="flex flex-row flex-wrap justify-center gap-5 px-5"
-        variants={staggerVariants}
-        initial="initial"
-        animate="animate"
-      >
-        {pets?.slice(0, displayedPets).map((pet) => (
-          <motion.div
-            key={pet._id}
-            variants={cardVariants}
-          >
-            <DogCard pet={pet} />
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="flex flex-row flex-wrap justify-center gap-5  px-5">
+        
+        
+        {
+          pets?.slice(0,displayedPets).map((pet)=>
+            (
+              <DogCard 
+                pet={pet}
+                key={pet._id}
+              />
+            )
+          )
+        }
+          
+      
+      </div>
       
       
       {

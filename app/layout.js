@@ -11,8 +11,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
-      <body className='bg-aliceblue-200'  >
+    <html lang="en">
+      <body >
         <Provider>
         <Toaster richColors />
         {children}
