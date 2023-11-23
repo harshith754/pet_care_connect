@@ -158,6 +158,7 @@ const PetParams = ( {searchParams} ) => {
             >
               Search
             </Button>
+            
             <Button
               className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue"
               style={{ width: "150px",height:"50px"}}

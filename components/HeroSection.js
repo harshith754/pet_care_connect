@@ -92,13 +92,10 @@ const HeroSection = () => {
               type="primary"
               size="middle"
               shape="default"
-              onClick={handleSubmit}
-
-             
-              
+              onClick={handleSubmit}    
             >
-              Search
-            </Button>
+              Search 
+            </Button>  
           </div>
   
         </div>
