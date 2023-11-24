@@ -51,7 +51,7 @@ const HeroSection = () => {
           
           <div className="w-full flex flex-col items-center justify-center ">
             <div className="relative leading-[80px] font-semibold text-[50px] text-white font-radio-canada mt-[60px] text-center sm:text-[38px] sm:leading-[45px]">
-              Find your new soulmate
+              Find your new FURRY friend!!
             </div>
             <div className="relative text-[white] text-[28px] text-center leading-[60px] font-puritan sm:text-[23px] sm:leading-[30px] sm:mt-5 px-5">
   
