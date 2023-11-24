@@ -2,13 +2,13 @@
 import { Button } from "antd";
 import DogCard from "@/components/DogCard";
 import { useEffect, useState } from "react";
-import { motion,useAnimate } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 
 const PetDisplay = ({sectionTitle, pets}) => {
 
-  const [displayedPets,setDisplayedPets] = useState(5);
+  const [displayedPets,setDisplayedPets] = useState(7);
   const [showButton,setShowButton]=useState(pets.length <= 5? false : true);
   
   useEffect(()=>{
@@ -31,22 +31,18 @@ const PetDisplay = ({sectionTitle, pets}) => {
 
 
   
-const staggerVariants = {
-  animate: {
-    transition: {
-      staggerChildren: 0.4, // Adjust the stagger delay as needed
+  const staggerVariants = {
+    animate: {
+      transition: {
+        staggerChildren: 0.4, // Adjust the stagger delay as needed
+      },
     },
-  },
-};
+  };
 
-const cardVariants = {
-  initial: { x: -100, opacity: 0 },
-  animate: { x: 0, opacity: 1 ,  transition: { ease: "easeIn" }},
-
-};
-
-
-  
+  const cardVariants = {
+    initial: { x: -100, opacity: 0 },
+    animate: { x: 0, opacity: 1 ,  transition: { ease: "easeIn" }},
+  };  
 
   return (
     <div className="bg-aliceblue-100 flex flex-col items-center justify-center py-[60px]">
@@ -79,6 +75,7 @@ const cardVariants = {
           <motion.div
             key={pet._id}
             variants={cardVariants}
+            
           >
             <DogCard pet={pet} />
           </motion.div>

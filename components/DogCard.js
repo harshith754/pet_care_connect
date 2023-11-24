@@ -1,6 +1,7 @@
 import { CldImage } from 'next-cloudinary';
 import { useInView } from 'react-intersection-observer';
 import {useRouter} from 'next/navigation'
+import { motion } from 'framer-motion';
 
 
 
@@ -21,35 +22,18 @@ const DogCard = ({pet}) => {
   return (
  
 
-      <div
-        className={`rounded-xl w-[250px] h-[280px] flex flex-col items-end justify-end relative transition-transform duration-300 transform scale-100 hover:scale-105 sm:hover:scale-110 ${inView ? 'sm:scale-110':''} sm:my-2`}
+      <motion.div
+        className={`rounded-xl w-[250px] h-[280px] flex flex-col items-end justify-end relative transition-transform duration-300 transform scale-100 hover:cursor-pointer  sm:hover:scale-110 ${inView ? 'sm:scale-110':''} sm:my-2`}
         ref={ref}
         onClick={redirect}
-
-        initial={{
-          // rotate:'180deg',
-          scale:1,
-          x:-100,
-          opacity:0
+        whileHover={{
+          scale: 1.1,
+          transition: { duration: 0.01, ease:'linear'},
         }}
 
-        animate={{
-          // rotate:'360deg',
-          scale:1,
-          x:0,
-          opacity:1
-        }}
-
-        transition={{
-          duration:0,
-          type:'backInOut',
-        }}
-
-        exit={{
-          scale:0,
-          // rotate:'0deg',
-          opacity:0,
-        }}
+        onHoverStart={e => {}}
+        onHoverEnd={e => {}}
+        whileTap={{ scale: 0.9 }}
       >
 
         <CldImage
@@ -90,7 +74,7 @@ const DogCard = ({pet}) => {
             
           </div>
         </div>
-      </div>
+      </motion.div>
 
     
     
