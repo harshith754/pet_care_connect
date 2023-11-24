@@ -94,7 +94,7 @@ const HeroSection = () => {
               shape="default"
               onClick={handleSubmit}    
             >
-              Search 
+              Search Now
             </Button>  
           </div>
   
