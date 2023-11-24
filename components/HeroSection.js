@@ -7,6 +7,7 @@ import { useState } from "react";
 import DropdownMenu from "./DropdownMenu";
 
 import { useRouter } from "next/navigation";
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   
@@ -86,16 +87,30 @@ const HeroSection = () => {
               />
               
             </div>
-            <Button
-              className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue "
-              style={{ width: "150px",height:"50px"}}
-              type="primary"
-              size="middle"
-              shape="default"
-              onClick={handleSubmit}    
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+                transition: { duration: 0.2, ease:'easeOut'},
+              }}
+
+              onHoverStart={e => {}}
+              onHoverEnd={e => {}}
+              whileTap={{ scale: 0.95 }}
             >
-              Search Now
-            </Button>  
+              <Button
+                className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue "
+                style={{ width: "150px",height:"50px"}}
+                type="primary"
+                size="middle"
+                shape="default"
+                onClick={handleSubmit}    
+              >
+                Search
+              </Button>  
+
+
+            </motion.div>
+            
           </div>
   
         </div>

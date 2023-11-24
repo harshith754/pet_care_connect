@@ -4,6 +4,8 @@ import DropdownMenu from "@/components/DropdownMenu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { motion } from 'framer-motion';
+
 
 const PetParams = ( {searchParams} ) => {
   const router = useRouter()
@@ -147,6 +149,18 @@ const PetParams = ( {searchParams} ) => {
           </div>
         
           <div className=" flex flex-col sm:flex-col items-center justify-center gap-5 sm:gap-3 sm:mt-5">
+            
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.2, ease:'easeOut'},
+            }}
+
+            onHoverStart={e => {}}
+            onHoverEnd={e => {}}
+            whileTap={{ scale: 0.98 }}
+          >
+
             <Button
               className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue"
               style={{ width: "150px",height:"50px"}}
@@ -158,7 +172,19 @@ const PetParams = ( {searchParams} ) => {
             >
               Search
             </Button>
-            
+          </motion.div>
+
+
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.2, ease:'easeOut'},
+            }}
+
+            onHoverStart={e => {}}
+            onHoverEnd={e => {}}
+            whileTap={{ scale: 0.98 }}
+          >
             <Button
               className="flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-lg bg-deepskyblue"
               style={{ width: "150px",height:"50px"}}
@@ -171,6 +197,10 @@ const PetParams = ( {searchParams} ) => {
             >
               Reset all
             </Button>
+
+          </motion.div>
+            
+            
           </div>
     
       </div>

@@ -84,18 +84,34 @@ const PetDisplay = ({sectionTitle, pets}) => {
       
       
       {
-        showButton &&
-        <Button
-        className=" mt-10 flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-xl bg-deepskyblue"
-        style={{ width: "220px",height:"50px"}}
-        type="primary"
-        size="middle"
-        shape="default"
-        onClick={handleLoadClick}
-        >
-          Show More
 
-        </Button>
+        showButton &&
+
+        <motion.div
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.2, ease:'easeOut'},
+          }}
+
+          onHoverStart={e => {}}
+          onHoverEnd={e => {}}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button
+            className=" mt-10 flex justify-center cursor-pointer items-center text-[18px] text-white font-jua rounded-xl bg-deepskyblue"
+            style={{ width: "220px",height:"50px"}}
+            type="primary"
+            size="middle"
+            shape="default"
+            onClick={handleLoadClick}
+
+            
+          >
+            Show More
+
+          </Button>
+        </motion.div>
+       
       }
     </div>
   );
